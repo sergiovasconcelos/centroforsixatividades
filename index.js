@@ -26,21 +26,21 @@ server.post("/projetos", (req, res) => {
 server.put('/projetos/:id', (req, res) => {
     const { id } = req.params;
     const { titulo } = req.body;
-    const projetoEncontrado = projetos.find((projeto) => projeto.id == id);
-    if(!projetoEncontrado){
+    const retorno = projetos.find((projeto) => projeto.id == id);
+    if(!retorno){
       return res.status(400).json({error: "Id de projeto não contém na lista de projetos"});
     }
-    projetoEncontrado.titulo = titulo;
-    return res.status(200).json(projetoEncontrado);
+    retorno.titulo = titulo;
+    return res.status(200).json(retorno);
   })
   
   server.delete('/projetos/:id', (req, res) => {
     const { id } = req.params;
-    const projetoEncontrado = projetos.find((projeto) => projeto.id == id);
-    if(!projetoEncontrado){
-      return res.status(400).json({error: "Id de projeto não contém na lista de projetos"});
+    const retorno = projetos.find((projeto) => projeto.id == id);
+    if(!retorno){
+      return res.status(400).json({error: "Não localizado"});
     }
-    projetos.splice(projetos.indexOf(projetoEncontrado), 1);
+    projetos.splice(projetos.indexOf(retorno), 1);
     return res.status(200).json(projetos);
   })
 
