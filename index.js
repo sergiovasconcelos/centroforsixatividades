@@ -15,6 +15,12 @@ server.get("/projetos/", (req, res)=> {
     return res.status(200).json(projetos);
 });
 
+server.get("/projetos/:id", (req, res)=> {
+  const { id } = req.params;
+  const localizado = projetos.filter(proj => proj.id == id);
+  return res.status(200).json(localizado);  
+});
+
 server.post("/projetos", (req, res) => {
     const { id, titulo, tarefas } = req.body;//
 
