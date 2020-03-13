@@ -28,7 +28,7 @@ server.put('/projetos/:id', (req, res) => {
     const { titulo } = req.body;
     const retorno = projetos.find((projeto) => projeto.id == id);
     if(!retorno){
-      return res.status(400).json({error: "Id de projeto não contém na lista de projetos"});
+      return res.status(400).json({error: "Id não localizado."});
     }
     retorno.titulo = titulo;
     return res.status(200).json(retorno);
