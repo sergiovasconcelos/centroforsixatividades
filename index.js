@@ -44,4 +44,17 @@ server.put('/projetos/:id', (req, res) => {
     return res.status(200).json(projetos);
   })
 
+  server.post('/projetos/:id/tarefas', (req, res) => {
+    const { id } = req.params;
+    const { atividades } = req.body;
+    const retorno = projetos.find((projeto) => projeto.id == id);
+    if(!retorno){
+      return res.status(400).json({error: "Não localizado"});
+    }
+    atividades.forEach(atividade => {
+      localizado.atividades.push(atividade);
+    })
+    return res.status(200).json(projetos);
+  })
+
 server.listen(3333);
