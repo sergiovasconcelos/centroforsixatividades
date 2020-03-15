@@ -33,7 +33,11 @@ server.get("/projetos/", (req, res)=> {
 
 server.get("/projetos/:id", (req, res)=> {
   const { id } = req.params;
-  const localizado = projetos.filter(proj => proj.id == id);
+  const localizado = projetos.find(proj => proj.id == id);//Nesse caso, se não localizar, retorna o que tá no if
+  //const localizado = projetos.filter(proj => proj.id == id);//Nesse caso, não retorna o que está no if
+  if(!localizado){
+    return res.status(400).json({error: "Id não localizado!"});
+  }
   return res.status(200).json(localizado);  
 });
 
